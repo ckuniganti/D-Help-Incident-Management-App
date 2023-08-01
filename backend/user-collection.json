@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "99aec0bb-cde5-4f5a-a19e-8008f2dfe8da",
+		"name": "User API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10704964"
+	},
+	"item": [
+		{
+			"name": "Get All Users Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"userName\": \"user@example.com\" }"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"userName\": \"user@example.com\" }"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Incident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"userName\": \"user@example.com\", \"incidentID\": \"INC12345\" }"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/user/incident",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"user",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Incident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"xyz@deloitte.com\",\r\n  \"incident\": {\r\n    \"incidentID\": \"INC9999\",\r\n    \"requestedBy\": \"xyz@deloitte.com\",\r\n    \"requestedFor\": \"xyz@deloitte.com\",\r\n    \"effectiveDate\": \"2023-01-01\",\r\n    \"environmentType\": \"Prod\",\r\n    \"application\": \"AWS\",\r\n    \"description\": \"Application read access for AWS\",\r\n    \"createdTime\": \"2023-01-01\",\r\n    \"updatedBy\": \"xyz@deloitte.com\",\r\n    \"updatedTime\": \"2023-01-01\"\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/user/incident/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user",
+						"incident",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Incident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"xyz@deloitte.com\",\r\n  \"incident\": {\r\n    \"incidentID\": \"INC9999\",\r\n    \"requestedBy\": \"xyz@deloitte.com\",\r\n    \"requestedFor\": \"xyz@deloitte.com\",\r\n    \"effectiveDate\": \"2023-06-28\",\r\n    \"environmentType\": \"Non-Prod\",\r\n    \"application\": \"portal\",\r\n    \"description\": \"Application read access for portal\",\r\n    \"createdTime\": \"2023-06-28\",\r\n    \"updatedBy\": \"xyz@deloitte.com\",\r\n    \"updatedTime\": \"2023-06-28\"\r\n  }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/user/incident/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"user",
+						"incident",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
