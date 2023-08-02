@@ -1,0 +1,35 @@
+/* Home.css */
+
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .MuiDialog-paper {
+    min-width: 300px;
+  }
+  
+  .MuiDialogTitle-root {
+    text-align: center;
+  }
+  
+  .MuiDialogContent-root {
+    text-align: center;
+    padding: 16px;
+  }
+  
+  .MuiDialogActions-root {
+    justify-content: center;
+  }
+  
+  .home-dialog-button {
+    margin: 10px;
+  }
+  
+  /* Optional: Add styles for the background of the dialog */
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
