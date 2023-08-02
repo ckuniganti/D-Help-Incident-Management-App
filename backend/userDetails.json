@@ -5,6 +5,11 @@
       "password": "12345",
       "firstName": "Chandra",
       "lastName": "Kuniganti",
+      "title": "Senior Consultant",
+      "costCenter": "CORE INDUSTRY SOLUTIONS USI HYD OFF",
+      "location": "India - Hyderabad",
+      "contactNumber": "+1.615.718.9983",
+      "contactEmail": "ckuniganti@deloitte.com",
       "incidents": [
         {
           "incidentID": "INC12345",
@@ -46,13 +51,13 @@
           "incidentID": "INC3335",
           "requestedBy": "ckuniganti@deloitte.com",
           "requestedFor": "ckuniganti@deloitte.com",
-          "effectiveDate": "2023-08-02",
+          "effectiveDate": "2023-08-10",
           "environmentType": "Prod",
           "application": "Portal",
           "description": "ABC",
-          "createdTime": "2023-08-02",
+          "createdTime": "2023-08-10",
           "updatedBy": "ckuniganti@deloitte.com",
-          "updatedTime": "2023-08-02"
+          "updatedTime": "2023-08-10"
         },
         {
           "incidentID": "INC12346",
@@ -85,6 +90,11 @@
       "password": "12345",
       "firstName": "Mrinal",
       "lastName": "Denre",
+      "title": "Consultant",
+      "costCenter": "CLOUD ENGINEERING USI BEN OFF",
+      "location": "India - Bengaluru",
+      "contactNumber": "+919113908545",
+      "contactEmail": "mdenre@deloitte.com",
       "incidents": [
         {
           "incidentID": "INC1111",
@@ -105,6 +115,11 @@
       "password": "12345",
       "firstName": "Prashanth",
       "lastName": "Indraganti",
+      "title": "Senior Consultant",
+      "costCenter": "CORE INDUSTRY SOLUTIONS USI HYD OFF",
+      "location": "India - Hyderabad",
+      "contactNumber": "+1.629.303.6546",
+      "contactEmail": "inprashanth@deloitte.com",
       "incidents": [
         {
           "incidentID": "INC4444",
