@@ -19,6 +19,11 @@ const defaultUser: User = {
   password: "",
   firstName: "",
   lastName: "",
+  title: "",
+  costCenter: "",
+  location: "",
+  contactNumber: "",
+  contactEmail: "",
   incidents: [],
 };
 

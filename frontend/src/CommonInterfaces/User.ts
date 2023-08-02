@@ -5,6 +5,11 @@ interface User {
   password: string;
   firstName: string;
   lastName: string;
+  title: string;
+  costCenter: string;
+  location: string;
+  contactNumber: string;
+  contactEmail: string;
   incidents: Incident[];
 }
 

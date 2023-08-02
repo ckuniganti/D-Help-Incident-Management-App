@@ -6,6 +6,7 @@ import Navigation from "./Component/Navigation";
 import Login from "./Component/Login";
 import User from "./CommonInterfaces/User";
 import { UserProvider } from "./Context/UserContext";
+import Profile from "./Component/Profile";
 
 function App() {
   const [user, setUser] = useState<User>(defaultUser);
@@ -37,6 +38,16 @@ function App() {
             element={
               sessionStorage.getItem("userToken") ? (
                 <Home userCnxtHandler={userCnxtHandler} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              sessionStorage.getItem("userToken") ? (
+                <Profile />
               ) : (
                 <Navigate to="/" />
               )
