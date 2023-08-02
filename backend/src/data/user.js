@@ -7,6 +7,31 @@ function fileCBFunction(err, data) {
     console.log("successfully retrieved that data from the file", data);
   }
 }
+
+async function getIncidentNumber() {
+  const incidentNumber = await fs.readFile(
+    "maxIncidentNumber.json",
+    "utf8",
+    fileCBFunction
+  );
+  const maxIncNumber = JSON.parse(incidentNumber).maxIncidentNumber;
+  console.log("************MX INC Number", maxIncNumber);
+  const numericPart = parseInt(maxIncNumber.slice(3), 10);
+
+  // Increment the numeric part
+  const nextNumericPart = numericPart + 1;
+
+  // Pad the numeric part with leading zeros to get the new incident number
+  const nextIncidentNumber = `INC${nextNumericPart
+    .toString()
+    .padStart(4, "0")}`;
+
+  await fs.writeFile(
+    "maxIncidentNumber.json",
+    JSON.stringify({ maxIncidentNumber: nextIncidentNumber })
+  );
+  return nextIncidentNumber;
+}
 async function getAllUsersData() {
   const allUsersData = await fs.readFile(
     "userDetails.json",
@@ -60,9 +85,8 @@ async function updateIncident(userName, data) {
       throw new NotFoundError("Could not find incident for id " + id);
     }
     userData.incidents[incidentIndex] = { ...data };
-    allUsersData.users.findIndex((user) => user.userName === userName);
-    const userIndex = incidents.findIndex(
-      (inc) => inc.incidentID === data.incidentID
+    const userIndex = allUsersData.users.findIndex(
+      (user) => user.userName === userName
     );
     if (userIndex < 0) {
       throw new NotFoundError("Could not find user for userName " + userName);
@@ -94,3 +118,4 @@ exports.getUserData = getUserData;
 exports.getUserIncident = getUserIncident;
 exports.updateIncident = updateIncident;
 exports.addIncident = addIncident;
+exports.getIncidentNumber = getIncidentNumber;
