@@ -51,7 +51,7 @@ const SearchIncident = ({ incHandler }: incidentHanlerProp) => {
           reset
         </button>
       </form>
-      {incident && <IncidentComponent incident={incident} mode="edit" />}
+      {/* {incident && <IncidentComponent incident={incident} mode="edit" />} */}
     </>
   );
 };

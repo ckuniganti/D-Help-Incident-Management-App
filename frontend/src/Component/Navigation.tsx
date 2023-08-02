@@ -52,10 +52,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-export default function Navigation() {
+interface AuthenticationProps {
+  authHandler: (isLogin: boolean) => void;
+}
+export default function Navigation({ authHandler }: AuthenticationProps) {
   const user = React.useContext(UserContext);
   const navigate = useNavigate();
+  const logoutHandler = () => {
+    sessionStorage.removeItem("userToken");
+    authHandler(false);
+    localStorage.removeItem("user");
+    navigate("/");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -74,28 +82,28 @@ export default function Navigation() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            {user && user.userName && (
+            {sessionStorage.getItem("userToken") && user && user.userName && (
               <p>
                 Welcome! {user.firstName} {user.lastName}
               </p>
             )}
           </Typography>
-          <Button
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            <p style={{ color: "white" }}>LogOut</p>
-          </Button>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {sessionStorage.getItem("userToken") && (
+            <Button onClick={logoutHandler}>
+              <p style={{ color: "white" }}>LogOut</p>
+            </Button>
+          )}
+          {sessionStorage.getItem("userToken") && (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

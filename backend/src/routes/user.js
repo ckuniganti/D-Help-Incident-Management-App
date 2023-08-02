@@ -1,6 +1,7 @@
 const express = require("express");
 
 const {
+  getIncidentNumber,
   getAllUsersData,
   getUserData,
   getUserIncident,
@@ -11,6 +12,15 @@ const {
 const { createIncidentFromReqBody } = require("../util/IncidentHelper");
 
 const router = express.Router();
+
+router.get("/getIncidentNumber", async (req, res, next) => {
+  try {
+    const incidentNumber = await getIncidentNumber();
+    res.json({ incidentNumber: incidentNumber });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.get("/", async (req, res, next) => {
   try {

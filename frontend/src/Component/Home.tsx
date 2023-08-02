@@ -10,11 +10,18 @@ import IncidentDetails from "./IncidentDetails";
 import Incident from "../CommonInterfaces/Incident";
 import NewIncident from "./NewIncident";
 
-const Home = () => {
+interface UserProps {
+  userCnxtHandler: (user: User) => void;
+}
+const Home = ({ userCnxtHandler }: UserProps) => {
   const usercnxt = useContext(UserContext);
+  console.log("*************** after reload", usercnxt);
   const [user, setUser] = useState<User>(usercnxt);
   const [incident, setIncident] = useState<Incident>();
   const [incidents, setIncidents] = useState<Incident[]>(usercnxt.incidents);
+  const incidentsHandler = (incidents: Incident[]) => {
+    setIncidents(incidents);
+  };
   const incidentColumns: GridColDef[] = [
     {
       field: "incidentID",
@@ -35,12 +42,14 @@ const Home = () => {
           </Button>
         </strong>
       ),
+      flex: 1,
     },
-    { field: "effectiveDate", headerName: "EffectiveDate" },
-    { field: "environmentType", headerName: "EnvironmentType" },
-    { field: "application", headerName: "Application" },
-    { field: "createdTime", headerName: "CreatedTime" },
-    { field: "Status", headerName: "Application" },
+    { field: "effectiveDate", headerName: "EffectiveDate", flex: 1 },
+    { field: "environmentType", headerName: "EnvironmentType", flex: 1 },
+    { field: "application", headerName: "Application", flex: 1 },
+    { field: "createdTime", headerName: "CreatedTime", flex: 1 },
+    { field: "Status", headerName: "Status", flex: 1 },
+    { field: "requestedBy", headerName: "Created By", flex: 1 },
   ];
 
   const [openModal, setOpenModal] = useState(false);
@@ -94,7 +103,13 @@ const Home = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {incident && <IncidentDetails incident={incident} />}
+          {incident && (
+            <IncidentDetails
+              incident={incident}
+              incidentsHandler={incidentsHandler}
+              userCnxtHandler={userCnxtHandler}
+            />
+          )}
         </Box>
       </Modal>
       <Modal
@@ -104,7 +119,10 @@ const Home = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <NewIncident />
+          <NewIncident
+            incidentsHandler={incidentsHandler}
+            userCnxtHandler={userCnxtHandler}
+          />
         </Box>
       </Modal>
     </>

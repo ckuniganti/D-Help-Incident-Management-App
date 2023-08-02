@@ -6,17 +6,41 @@ import axios from "axios";
 import SaveIncidentRequest from "../CommonInterfaces/SaveIncidentRequest";
 import UserContext from "../Context/UserContext";
 import { TextField, Box, Button, Container } from "@mui/material";
+import { getIncidentNumber } from "../Util/helper";
+import User from "../CommonInterfaces/User";
 interface IncidentProps {
   incident: Incident;
+  incHandler: (incidents: Incident[]) => void;
+  userCnxtHandler: (user: User) => void;
   mode: string;
 }
-const IncidentComponent = ({ incident, mode }: IncidentProps) => {
+const IncidentComponent = ({
+  incident,
+  incHandler,
+  userCnxtHandler,
+  mode,
+}: IncidentProps) => {
   const userCnxt = useContext(UserContext);
   const navigate = useNavigate();
   const [isEditable, setIsEditable] = useState<boolean>(
     mode === "add" ? true : false
   );
-
+  const replaceIncident = (data: Incident) => {
+    let updatedIncidents: Incident[];
+    if (mode === "add") {
+      updatedIncidents = [...userCnxt.incidents];
+      console.log("updated Incidents", updatedIncidents);
+      console.log("data to be pushed", data);
+      updatedIncidents.push(data);
+    } else {
+      updatedIncidents = userCnxt.incidents.map((inc) =>
+        inc.incidentID === data.incidentID ? data : inc
+      );
+    }
+    incHandler(updatedIncidents);
+    const user: User = { ...userCnxt, incidents: updatedIncidents };
+    userCnxtHandler(user);
+  };
   const { handleSubmit, register, reset } = useForm<Incident>();
   const onSaveHandler = (data: Incident) => {
     const request: SaveIncidentRequest = {
@@ -35,6 +59,7 @@ const IncidentComponent = ({ incident, mode }: IncidentProps) => {
       .then((response) => {
         console.log("************* response data***********", response.data);
         setIsEditable(false);
+        replaceIncident(data);
         if (mode === "add") {
           navigate("/home");
         }
@@ -72,8 +97,11 @@ const IncidentComponent = ({ incident, mode }: IncidentProps) => {
               id="incidentID"
               label="IncidentID"
               variant="outlined"
-              disabled
-              value={incident.incidentID}
+              defaultValue={
+                incident.incidentID === ""
+                  ? getIncidentNumber()
+                  : incident.incidentID
+              }
               {...register("incidentID")}
             />
             <TextField

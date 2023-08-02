@@ -6,8 +6,9 @@ import axios from "axios";
 import User from "../CommonInterfaces/User";
 interface UserProps {
   userCnxtHandler: (user: User) => void;
+  authHandler: (isLogin: boolean) => void;
 }
-const Login = ({ userCnxtHandler }: UserProps) => {
+const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
   const navigate = useNavigate();
   const { handleSubmit, register, reset } = useForm<LoginData>();
   const onSubmitHandler = (data: LoginData) => {
@@ -15,6 +16,9 @@ const Login = ({ userCnxtHandler }: UserProps) => {
       if (response.data.user !== undefined) {
         console.log("**********Login Successful*********", response);
         userCnxtHandler(response.data.user);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        sessionStorage.setItem("userToken", "SecretPassword");
+        authHandler(true);
         navigate("/home");
       } else {
         console.log("**********Login failed *********", response);

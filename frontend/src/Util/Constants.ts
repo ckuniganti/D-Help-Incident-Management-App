@@ -1,8 +1,8 @@
 import Incident from "../CommonInterfaces/Incident";
 import User from "../CommonInterfaces/User";
-import { getDateOnlyInString } from "./helper";
+import { getDateOnlyInString, getIncidentNumber } from "./helper";
 const defaultIncident: Incident = {
-  incidentID: "",
+  incidentID: getIncidentNumber(),
   requestedBy: "",
   requestedFor: "",
   effectiveDate: getDateOnlyInString(new Date()),
