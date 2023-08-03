@@ -13,6 +13,8 @@ interface IncidentProps {
   userCnxtHandler: (user: User) => void;
   handleCloseModal: () => void;
   mode: string;
+  alertMsgHandler: (msg: string) => void;
+  handleOpenAlert: () => void;
 }
 const IncidentComponent = ({
   incident,
@@ -20,6 +22,8 @@ const IncidentComponent = ({
   userCnxtHandler,
   handleCloseModal,
   mode,
+  alertMsgHandler,
+  handleOpenAlert,
 }: IncidentProps) => {
   const userCnxt = useContext(UserContext);
 
@@ -62,11 +66,13 @@ const IncidentComponent = ({
           replaceIncident(response.data.Incident);
         }
         console.log("Response message after save", response.data.message);
+        handleCloseModal();
+        alertMsgHandler(response.data.message);
+        handleOpenAlert();
       })
       .catch((error) => {
         console.log("Error occurred:", error);
       });
-    handleCloseModal();
   };
 
   const onCancelHandler = () => {

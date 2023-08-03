@@ -15,6 +15,10 @@ import { Typography } from "@mui/material";
 import IncidentDetails from "./IncidentDetails";
 import Incident from "../CommonInterfaces/Incident";
 import NewIncident from "./NewIncident";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface UserProps {
   userCnxtHandler: (user: User) => void;
@@ -72,6 +76,18 @@ const Home = ({ userCnxtHandler }: UserProps) => {
   const [openNewIncidentModal, setOpenNewIncidentModal] = useState(false);
   const handleCloseNewIncident = () => setOpenNewIncidentModal(false);
 
+  const [alertMsg, setAlertMsg] = useState<string>("");
+  const [openAlert, setOpenAlertMod] = useState(false);
+  const handleOpenAlert = () => {
+    console.log("Alert Message was called !!!!!!!");
+    setOpenAlertMod(true);
+  };
+  const handleCloseAlert = () => setOpenAlertMod(false);
+  const alertMsgHandler = (msg: string) => {
+    console.log("@@@@@@@@@@@@alertMessage", msg);
+    setAlertMsg(msg);
+  };
+
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -88,6 +104,25 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     <>
       {user && (
         <div>
+          <Box sx={{ width: "100%", alignItems: "center" }}>
+            <Collapse in={openAlert}>
+              <Alert
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={handleCloseAlert}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2 }}
+              >
+                {alertMsg}
+              </Alert>
+            </Collapse>
+          </Box>
           <Box
             sx={{
               display: "flex",
@@ -131,6 +166,8 @@ const Home = ({ userCnxtHandler }: UserProps) => {
               incidentsHandler={incidentsHandler}
               userCnxtHandler={userCnxtHandler}
               handleCloseModal={handleClose}
+              alertMsgHandler={alertMsgHandler}
+              handleOpenAlert={handleOpenAlert}
             />
           )}
         </Box>
@@ -146,6 +183,8 @@ const Home = ({ userCnxtHandler }: UserProps) => {
             incidentsHandler={incidentsHandler}
             userCnxtHandler={userCnxtHandler}
             handleCloseModal={handleCloseNewIncident}
+            alertMsgHandler={alertMsgHandler}
+            handleOpenAlert={handleOpenAlert}
           />
         </Box>
       </Modal>

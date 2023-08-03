@@ -7,11 +7,15 @@ interface IncidentsProp {
   incidentsHandler: (incidents: Incident[]) => void;
   userCnxtHandler: (user: User) => void;
   handleCloseModal: () => void;
+  alertMsgHandler: (msg: string) => void;
+  handleOpenAlert: () => void;
 }
 const NewIncident = ({
   incidentsHandler,
   userCnxtHandler,
   handleCloseModal,
+  alertMsgHandler,
+  handleOpenAlert,
 }: IncidentsProp) => {
   return (
     <IncidentComponent
@@ -20,6 +24,8 @@ const NewIncident = ({
       userCnxtHandler={userCnxtHandler}
       handleCloseModal={handleCloseModal}
       mode="add"
+      alertMsgHandler={alertMsgHandler}
+      handleOpenAlert={handleOpenAlert}
     />
   );
 };
