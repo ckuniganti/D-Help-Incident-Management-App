@@ -12,6 +12,7 @@ function createIncidentFromReqBody(req) {
     updatedBy: incidentData.updatedBy,
     updatedTime: incidentData.updatedTime,
     status: incidentData.status,
+    environment : incidentData.environment
   };
   return incident;
 }

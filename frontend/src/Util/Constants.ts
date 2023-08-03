@@ -1,8 +1,8 @@
 import Incident from "../CommonInterfaces/Incident";
 import User from "../CommonInterfaces/User";
-import { getDateOnlyInString, getIncidentNumber } from "./helper";
+import { getDateOnlyInString } from "./helper";
 const defaultIncident: Incident = {
-  incidentID: getIncidentNumber(),
+  incidentID: "",
   requestedBy: "",
   requestedFor: "",
   effectiveDate: getDateOnlyInString(new Date()),
@@ -13,6 +13,7 @@ const defaultIncident: Incident = {
   updatedBy: "",
   updatedTime: getDateOnlyInString(new Date()),
   status: "",
+  environment: "",
 };
 
 const defaultUser: User = {

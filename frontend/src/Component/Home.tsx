@@ -2,7 +2,12 @@ import { useState, ChangeEvent, useContext } from "react";
 import axios from "axios";
 import User from "../CommonInterfaces/User";
 import UserContext from "../Context/UserContext";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -47,10 +52,18 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     },
     { field: "effectiveDate", headerName: "EffectiveDate", flex: 1 },
     { field: "environmentType", headerName: "EnvironmentType", flex: 1 },
+    { field: "environment", headerName: "Environment", flex: 1 },
     { field: "application", headerName: "Application", flex: 1 },
     { field: "createdTime", headerName: "CreatedTime", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
-    { field: "requestedBy", headerName: "Created By", flex: 1 },
+    {
+      field: "requested By",
+      headerName: "Created By",
+      flex: 1,
+      sortable: false,
+      valueGetter: (params: GridValueGetterParams) =>
+        `${usercnxt.firstName || ""} ${usercnxt.lastName || ""}`,
+    },
   ];
 
   const [openModal, setOpenModal] = useState(false);
@@ -87,7 +100,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
               <Button
                 variant="contained"
                 size="medium"
-                sx={{  margin: 1, marginLeft: 80,}}
+                sx={{ margin: 1, marginLeft: 80 }}
                 onClick={() => {
                   setOpenNewIncidentModal(true);
                 }}

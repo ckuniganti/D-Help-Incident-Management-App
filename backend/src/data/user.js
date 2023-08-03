@@ -77,6 +77,7 @@ async function updateIncident(userName, data) {
 
   const userData = await getUserData(userName);
   const incidents = userData.incidents;
+  let updatedIncident;
   if (userData !== null && incidents !== null && incidents.length > 0) {
     const incidentIndex = incidents.findIndex(
       (inc) => inc.incidentID === data.incidentID
@@ -85,6 +86,7 @@ async function updateIncident(userName, data) {
       throw new NotFoundError("Could not find incident for id " + id);
     }
     userData.incidents[incidentIndex] = { ...data };
+    updatedIncident = userData.incidents[incidentIndex];
     const userIndex = allUsersData.users.findIndex(
       (user) => user.userName === userName
     );
@@ -94,7 +96,7 @@ async function updateIncident(userName, data) {
     allUsersData.users[userIndex] = userData;
     await fs.writeFile("userDetails.json", JSON.stringify(allUsersData));
   }
-  return userData;
+  return updatedIncident;
 }
 
 async function addIncident(userName, data) {
@@ -102,7 +104,9 @@ async function addIncident(userName, data) {
   const userData = await getUserData(userName);
   const incidents = userData.incidents;
   if (userData !== null && incidents !== null) {
-    userData.incidents.push(data);
+    dataWithIncNumber = { ...data, incidentID: await getIncidentNumber() };
+    console.log(dataWithIncNumber);
+    userData.incidents.push(dataWithIncNumber);
     const userIndex = allUsersData.users.findIndex(
       (user) => user.userName === userName
     );
@@ -110,7 +114,7 @@ async function addIncident(userName, data) {
     await fs.writeFile("userDetails.json", JSON.stringify(allUsersData));
   }
   //console.log("*****************", allUsersData);
-  return userData;
+  return dataWithIncNumber;
 }
 
 exports.getAllUsersData = getAllUsersData;
@@ -118,4 +122,3 @@ exports.getUserData = getUserData;
 exports.getUserIncident = getUserIncident;
 exports.updateIncident = updateIncident;
 exports.addIncident = addIncident;
-exports.getIncidentNumber = getIncidentNumber;
