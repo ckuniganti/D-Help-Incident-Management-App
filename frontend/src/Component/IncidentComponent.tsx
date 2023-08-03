@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SaveIncidentRequest from "../CommonInterfaces/SaveIncidentRequest";
 import UserContext from "../Context/UserContext";
-import { TextField, Box, Button, Container } from "@mui/material";
-import { getIncidentNumber } from "../Util/helper";
+import { TextField, Box, Button, Container, Typography } from "@mui/material";
 import User from "../CommonInterfaces/User";
 interface IncidentProps {
   incident: Incident;
@@ -40,10 +39,13 @@ const IncidentComponent = ({
     const user: User = { ...userCnxt, incidents: updatedIncidents };
     userCnxtHandler(user);
   };
-  const { handleSubmit, register, reset } = useForm<Incident>();
+  const { handleSubmit, register, reset, setValue } = useForm<Incident>();
   const onSaveHandler = (data: Incident) => {
+    if (mode === "edit") {
+      data = { ...data, incidentID: incident.incidentID };
+    }
     const request: SaveIncidentRequest = {
-      userName: userCnxt.userName,
+      userName: data.requestedFor,
       incident: { ...data, requestedBy: userCnxt.userName },
     };
     console.log("Data from Incident Form", request);
@@ -56,7 +58,10 @@ const IncidentComponent = ({
     axios
       .post(url, request)
       .then((response) => {
-        replaceIncident({ ...data, requestedBy: userCnxt.userName });
+        if (response.data.Incident.requestedFor === userCnxt.userName) {
+          replaceIncident(response.data.Incident);
+        }
+        console.log("Response message after save", response.data.message);
       })
       .catch((error) => {
         console.log("Error occurred:", error);
@@ -74,7 +79,12 @@ const IncidentComponent = ({
       onSubmit={handleSubmit(onSaveHandler)}
       style={{ width: 550, textAlign: "center", margin: 0 }}
     >
-      <p>Incident Details for {incident.incidentID}</p>
+      {mode === "edit" && (
+        <Typography variant="h5">
+          Incident Details for {incident.incidentID}
+        </Typography>
+      )}
+      {mode === "add" && <Typography variant="h5">New Incident</Typography>}
       <Container maxWidth="sm">
         <Box
           component="form"
@@ -82,17 +92,6 @@ const IncidentComponent = ({
             "& > :not(style)": { m: 1, width: "25ch" },
           }}
         >
-          <TextField
-            id="incidentID"
-            label="IncidentID"
-            variant="outlined"
-            defaultValue={
-              incident.incidentID === ""
-                ? getIncidentNumber()
-                : incident.incidentID
-            }
-            {...register("incidentID")}
-          />
           <TextField
             id="requestedFor"
             label="RequestedFor"
@@ -116,6 +115,14 @@ const IncidentComponent = ({
             label="Environment Type"
             defaultValue={incident.environmentType}
             {...register("environmentType")}
+          />
+          <TextField
+            type="text"
+            id="environment"
+            label="Env"
+            variant="outlined"
+            defaultValue={incident.environment}
+            {...register("environment")}
           />
           <TextField
             type="text"

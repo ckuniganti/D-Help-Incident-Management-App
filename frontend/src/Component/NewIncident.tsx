@@ -14,17 +14,13 @@ const NewIncident = ({
   handleCloseModal,
 }: IncidentsProp) => {
   return (
-    <>
-      <div>
-        <IncidentComponent
-          incident={defaultIncident}
-          incHandler={incidentsHandler}
-          userCnxtHandler={userCnxtHandler}
-          handleCloseModal={handleCloseModal}
-          mode="add"
-        />
-      </div>
-    </>
+    <IncidentComponent
+      incident={defaultIncident}
+      incHandler={incidentsHandler}
+      userCnxtHandler={userCnxtHandler}
+      handleCloseModal={handleCloseModal}
+      mode="add"
+    />
   );
 };
 

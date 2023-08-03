@@ -13,15 +13,6 @@ const { createIncidentFromReqBody } = require("../util/IncidentHelper");
 
 const router = express.Router();
 
-router.get("/getIncidentNumber", async (req, res, next) => {
-  try {
-    const incidentNumber = await getIncidentNumber();
-    res.json({ incidentNumber: incidentNumber });
-  } catch (error) {
-    next(error);
-  }
-});
-
 router.get("/", async (req, res, next) => {
   try {
     const allUsersData = await getAllUsersData();
@@ -59,24 +50,39 @@ router.post("/user/incident/update", async (req, res, next) => {
   try {
     const userName = req.body.userName;
     console.log(req.body);
-    const incident = createIncidentFromReqBody(req);
-    const userData = await updateIncident(userName, incident);
-    res.json({ userData: userData });
+    const incidentReq = createIncidentFromReqBody(req);
+    const incident = await updateIncident(userName, incidentReq);
+    res.json({
+      message: incident.incidentID + " Successfully updated",
+      Incident: incident,
+    });
   } catch (error) {
+    console.log("********************", error);
     next(error);
+    return res.status(422).json({
+      error: "Error occured while updating Incident",
+      message: "Error occured while updating Incident!",
+    });
   }
 });
 
 router.post("/user/incident/add", async (req, res, next) => {
   try {
     const userName = req.body.userName;
-    console.log("BeforeMapping", req.body.incident);
-    const incident = createIncidentFromReqBody(req);
-    console.log("AfterMapping", incident);
-    const userData = await addIncident(userName, incident);
-    res.json({ userData: userData });
+    const incidentReq = createIncidentFromReqBody(req);
+    const incident = await addIncident(userName, incidentReq);
+    res.json({
+      message:
+        "New Incident Successfully Created, Incident Number :" +
+        incident.incidentID,
+      Incident: incident,
+    });
   } catch (error) {
     next(error);
+    return res.status(422).json({
+      error: "Error occured while inserting new Incident",
+      message: "Error occured while inserting new Incident!",
+    });
   }
 });
 

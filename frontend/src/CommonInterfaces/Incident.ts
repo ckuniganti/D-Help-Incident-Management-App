@@ -10,6 +10,7 @@ interface Incident {
   updatedBy: string;
   updatedTime: string;
   status: string;
+  environment: string;
 }
 
 export default Incident;
