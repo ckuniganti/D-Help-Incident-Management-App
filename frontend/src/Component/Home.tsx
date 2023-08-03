@@ -108,6 +108,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
           <Box sx={{ width: "100%", alignItems: "center" }}>
             <Collapse in={openAlert}>
               <Alert
+                variant="filled"
                 action={
                   <IconButton
                     aria-label="close"
@@ -151,7 +152,10 @@ const Home = ({ userCnxtHandler }: UserProps) => {
             getRowId={(row) => row.incidentID}
             rows={usercnxt.incidents}
             columns={incidentColumns}
-            pageSizeOptions={[5, 10,25,50,100]}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 5 } },
+            }}
+            pageSizeOptions={[5, 10, 25, 50, 100]}
           />
         </div>
       )}
