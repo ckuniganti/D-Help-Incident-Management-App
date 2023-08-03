@@ -22,16 +22,7 @@ const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
   const navigate = useNavigate();
   const [loginMsg, setLoginMsg] = useState<string>();
   const { handleSubmit, register, reset, formState } = useForm<LoginData>();
-  const {
-    errors,
-    isDirty,
-    isValid,
-    touchedFields,
-    dirtyFields,
-    isSubmitted,
-    isSubmitSuccessful,
-    isSubmitting,
-  } = formState;
+  const { errors } = formState;
 
   const onFormChangeHandler = () => {
     setLoginMsg(undefined);
@@ -84,10 +75,20 @@ const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
           <Box>
             <Typography variant="h4">Login</Typography>
           </Box>
-          <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <form onSubmit={handleSubmit(onSubmitHandler)} noValidate>
             {loginMsg && (
               <Alert sx={{ width: 265, m: 1 }} severity="error">
                 Invalid User Name or Password
+              </Alert>
+            )}
+            {errors?.userName && (
+              <Alert severity="error" sx={{ width: 265, m: 1 }}>
+                {errors?.userName?.message}
+              </Alert>
+            )}
+            {errors?.password && (
+              <Alert severity="error" sx={{ width: 265, m: 1 }}>
+                {errors?.password?.message}
               </Alert>
             )}
             <TextField
@@ -97,7 +98,12 @@ const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
               id="userName"
               label="User Name"
               variant="outlined"
-              {...register("userName")}
+              {...register("userName", {
+                required: {
+                  value: true,
+                  message: "'User Name' is required",
+                },
+              })}
             ></TextField>
             <TextField
               required
@@ -106,7 +112,12 @@ const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
               id="password"
               label="Password"
               variant="outlined"
-              {...register("password")}
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "'Password' is required",
+                },
+              })}
             ></TextField>
             <Box sx={{ width: 400 }}>
               <Button
