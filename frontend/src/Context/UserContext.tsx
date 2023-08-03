@@ -1,6 +1,6 @@
 import React from "react";
 import User from "../CommonInterfaces/User";
-import {defaultUser} from '../Util/Constants'
+import { defaultUser } from "../Util/Constants";
 
 const UserContext = React.createContext<User>(defaultUser);
 
