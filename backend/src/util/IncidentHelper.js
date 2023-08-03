@@ -11,6 +11,7 @@ function createIncidentFromReqBody(req) {
     createdTime: incidentData.createdTime,
     updatedBy: incidentData.updatedBy,
     updatedTime: incidentData.updatedTime,
+    status: incidentData.status,
   };
   return incident;
 }

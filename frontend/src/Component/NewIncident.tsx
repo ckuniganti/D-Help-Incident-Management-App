@@ -6,8 +6,13 @@ import User from "../CommonInterfaces/User";
 interface IncidentsProp {
   incidentsHandler: (incidents: Incident[]) => void;
   userCnxtHandler: (user: User) => void;
+  handleCloseModal: () => void;
 }
-const NewIncident = ({ incidentsHandler, userCnxtHandler }: IncidentsProp) => {
+const NewIncident = ({
+  incidentsHandler,
+  userCnxtHandler,
+  handleCloseModal,
+}: IncidentsProp) => {
   return (
     <>
       <div>
@@ -15,6 +20,7 @@ const NewIncident = ({ incidentsHandler, userCnxtHandler }: IncidentsProp) => {
           incident={defaultIncident}
           incHandler={incidentsHandler}
           userCnxtHandler={userCnxtHandler}
+          handleCloseModal={handleCloseModal}
           mode="add"
         />
       </div>

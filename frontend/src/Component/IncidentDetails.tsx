@@ -6,12 +6,14 @@ interface IncidentProps {
   incident: Incident;
   incidentsHandler: (incidents: Incident[]) => void;
   userCnxtHandler: (user: User) => void;
+  handleCloseModal: () => void;
 }
 
 const IncidentDetails = ({
   incident,
   incidentsHandler,
   userCnxtHandler,
+  handleCloseModal,
 }: IncidentProps) => {
   return (
     <>
@@ -20,6 +22,7 @@ const IncidentDetails = ({
           incident={incident}
           incHandler={incidentsHandler}
           userCnxtHandler={userCnxtHandler}
+          handleCloseModal={handleCloseModal}
           mode="edit"
         />
       </div>

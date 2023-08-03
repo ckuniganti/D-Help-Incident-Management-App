@@ -6,6 +6,7 @@ import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 import IncidentDetails from "./IncidentDetails";
 import Incident from "../CommonInterfaces/Incident";
 import NewIncident from "./NewIncident";
@@ -48,7 +49,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     { field: "environmentType", headerName: "EnvironmentType", flex: 1 },
     { field: "application", headerName: "Application", flex: 1 },
     { field: "createdTime", headerName: "CreatedTime", flex: 1 },
-    { field: "Status", headerName: "Status", flex: 1 },
+    { field: "status", headerName: "Status", flex: 1 },
     { field: "requestedBy", headerName: "Created By", flex: 1 },
   ];
 
@@ -74,19 +75,27 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     <>
       {user && (
         <div>
-          <p>
-            Displaying Incidents created for {user.firstName} {user.lastName}
-            <Button
-              variant="contained"
-              size="small"
-              style={{ marginLeft: 16 }}
-              onClick={() => {
-                setOpenNewIncidentModal(true);
-              }}
-            >
-              New Incident
-            </Button>
-          </p>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center", // Optional: Vertically align the button with the text
+            }}
+          >
+            <Typography variant="h6">
+              Displaying Incidents created for {user.firstName} {user.lastName}
+              <Button
+                variant="contained"
+                size="medium"
+                sx={{  margin: 1, marginLeft: 80,}}
+                onClick={() => {
+                  setOpenNewIncidentModal(true);
+                }}
+              >
+                New Incident
+              </Button>
+            </Typography>
+          </Box>
 
           <DataGrid
             getRowId={(row) => row.incidentID}
@@ -108,6 +117,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
               incident={incident}
               incidentsHandler={incidentsHandler}
               userCnxtHandler={userCnxtHandler}
+              handleCloseModal={handleClose}
             />
           )}
         </Box>
@@ -122,6 +132,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
           <NewIncident
             incidentsHandler={incidentsHandler}
             userCnxtHandler={userCnxtHandler}
+            handleCloseModal={handleCloseNewIncident}
           />
         </Box>
       </Modal>

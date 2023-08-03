@@ -9,6 +9,7 @@ interface Incident {
   createdTime: string;
   updatedBy: string;
   updatedTime: string;
+  status: string;
 }
 
 export default Incident;
