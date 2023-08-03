@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home from "./Component/Home";
 import { defaultUser } from "./Util/Constants";
 import Navigation from "./Component/Navigation";
@@ -10,6 +10,33 @@ import Profile from "./Component/Profile";
 
 function App() {
   const [user, setUser] = useState<User>(defaultUser);
+  useEffect(() => {
+    // Function to get the user from local storage or use default
+    const getUserFromLocalStorage = () => {
+      const storedUser = localStorage.getItem("user");
+      let user: User;
+      if (storedUser) {
+        try {
+          // If user exists, parse it to a User object
+          const parsedUser = JSON.parse(storedUser) as User;
+          user = parsedUser;
+        } catch (error) {
+          console.error("Error parsing user from localStorage:", error);
+          user = defaultUser;
+        }
+      } else {
+        // If user is not available in localStorage, use the default value
+        user = defaultUser;
+      }
+      console.log("%%%%%%%%%%%%%%%%%%%", user);
+      return user;
+    };
+
+    // Get the user from local storage or use default
+    const userFromStorage = getUserFromLocalStorage();
+    setUser(userFromStorage);
+    userCnxtHandler(userFromStorage);
+  }, []);
   const [login, setLogin] = useState<boolean>(false);
 
   const userCnxtHandler = (user: User) => {

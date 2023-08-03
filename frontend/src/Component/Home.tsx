@@ -26,7 +26,8 @@ interface UserProps {
 const Home = ({ userCnxtHandler }: UserProps) => {
   const usercnxt = useContext(UserContext);
   console.log("*************** after reload", usercnxt);
-  const [user, setUser] = useState<User>(usercnxt);
+  //const [user, setUser] = useState<User>(usercnxt);
+  //setUser(usercnxt);
   const [incident, setIncident] = useState<Incident>();
   const [incidents, setIncidents] = useState<Incident[]>(usercnxt.incidents);
   const incidentsHandler = (incidents: Incident[]) => {
@@ -102,7 +103,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
 
   return (
     <>
-      {user && (
+      {usercnxt && (
         <div>
           <Box sx={{ width: "100%", alignItems: "center" }}>
             <Collapse in={openAlert}>
@@ -131,7 +132,8 @@ const Home = ({ userCnxtHandler }: UserProps) => {
             }}
           >
             <Typography variant="h6">
-              Displaying Incidents created for {user.firstName} {user.lastName}
+              Displaying Incidents created for {usercnxt.firstName}{" "}
+              {usercnxt.lastName}
               <Button
                 variant="contained"
                 size="medium"
@@ -147,9 +149,9 @@ const Home = ({ userCnxtHandler }: UserProps) => {
 
           <DataGrid
             getRowId={(row) => row.incidentID}
-            rows={incidents}
+            rows={usercnxt.incidents}
             columns={incidentColumns}
-            pageSizeOptions={[5, 10]}
+            pageSizeOptions={[5, 10,25,50,100]}
           />
         </div>
       )}
