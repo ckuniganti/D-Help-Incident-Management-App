@@ -70,7 +70,9 @@ router.post("/user/incident/update", async (req, res, next) => {
 router.post("/user/incident/add", async (req, res, next) => {
   try {
     const userName = req.body.userName;
+    console.log("BeforeMapping", req.body.incident);
     const incident = createIncidentFromReqBody(req);
+    console.log("AfterMapping", incident);
     const userData = await addIncident(userName, incident);
     res.json({ userData: userData });
   } catch (error) {

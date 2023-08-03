@@ -12,6 +12,7 @@ const defaultIncident: Incident = {
   createdTime: getDateOnlyInString(new Date()),
   updatedBy: "",
   updatedTime: getDateOnlyInString(new Date()),
+  status: "",
 };
 
 const defaultUser: User = {
