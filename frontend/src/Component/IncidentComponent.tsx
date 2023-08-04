@@ -75,7 +75,10 @@ const IncidentComponent = ({
     axios
       .post(url, request)
       .then((response) => {
-        if (response.data.Incident.requestedFor === userCnxt.userName) {
+        if (
+          response.data.Incident.requestedFor === userCnxt.userName ||
+          userCnxt.role == "admin"
+        ) {
           replaceIncident(response.data.Incident);
         }
         console.log("Response message after save", response.data.message);
@@ -169,7 +172,7 @@ const IncidentComponent = ({
               validate: (fieldData) => {
                 return (
                   new Date(fieldData) >= new Date() ||
-                  "'Effective Date' cannot be in the past"
+                  "'Effective Date' should be in future"
                 );
               },
             })}

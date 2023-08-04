@@ -74,7 +74,7 @@ function App() {
             path="/profile"
             element={
               sessionStorage.getItem("userToken") ? (
-                <Profile />
+                <Profile user={user}/>
               ) : (
                 <Navigate to="/" />
               )

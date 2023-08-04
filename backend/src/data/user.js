@@ -41,9 +41,24 @@ async function getAllUsersData() {
   return JSON.parse(allUsersData);
 }
 
+async function getAllUsersIncidents() {
+  const allUsersData = await fs.readFile(
+    "userDetails.json",
+    "utf8",
+    fileCBFunction
+  );
+
+  const allUsersDataJson = await JSON.parse(allUsersData);
+  const allIncidents = allUsersDataJson.users.reduce((accumulator, user) => {
+    return accumulator.concat(user.incidents);
+  }, []);
+  return allIncidents;
+}
+
 async function getUserData(userName) {
   const allUsersData = await getAllUsersData();
   let userData = null;
+  let user = null;
   if (
     allUsersData !== null &&
     allUsersData.users !== null &&
@@ -52,8 +67,15 @@ async function getUserData(userName) {
     userData = allUsersData.users.filter(
       (userData) => userData.userName === userName
     );
+    user = userData[0];
+    console.log("user details while login", user);
+    if (user.role === "admin") {
+      const incidents = await getAllUsersIncidents();
+      user = { ...user, incidents: incidents };
+    }
   }
-  return userData[0];
+  console.log("user details while login", user);
+  return user;
 }
 
 async function getUserIncident(userName, incidentID) {
@@ -122,3 +144,4 @@ exports.getUserData = getUserData;
 exports.getUserIncident = getUserIncident;
 exports.updateIncident = updateIncident;
 exports.addIncident = addIncident;
+exports.getAllUsersIncidents = getAllUsersIncidents;

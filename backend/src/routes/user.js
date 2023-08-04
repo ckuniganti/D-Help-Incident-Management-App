@@ -7,17 +7,18 @@ const {
   getUserIncident,
   updateIncident,
   addIncident,
+  getAllUsersIncidents,
 } = require("../data/user");
 
 const { createIncidentFromReqBody } = require("../util/IncidentHelper");
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
+router.post("/admin", async (req, res, next) => {
   try {
-    const allUsersData = await getAllUsersData();
-    // console.log("specific use data", allUsersData);
-    res.json({ users: allUsersData });
+    const userData = await getAllUsersIncidents(req.body.userName);
+
+    res.json({ user: userData });
   } catch (error) {
     next(error);
   }

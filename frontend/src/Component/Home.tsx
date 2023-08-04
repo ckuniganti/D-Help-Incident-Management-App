@@ -19,15 +19,14 @@ import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
+import Profile from "./Profile";
 
 interface UserProps {
   userCnxtHandler: (user: User) => void;
 }
 const Home = ({ userCnxtHandler }: UserProps) => {
   const usercnxt = useContext(UserContext);
-  console.log("*************** after reload", usercnxt);
-  //const [user, setUser] = useState<User>(usercnxt);
-  //setUser(usercnxt);
+
   const [incident, setIncident] = useState<Incident>();
   const [incidents, setIncidents] = useState<Incident[]>(usercnxt.incidents);
   const incidentsHandler = (incidents: Incident[]) => {
@@ -62,12 +61,25 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     { field: "createdTime", headerName: "CreatedTime", flex: 1 },
     { field: "status", headerName: "Status", flex: 1 },
     {
-      field: "requested By",
-      headerName: "Created By",
+      field: "requestedFor",
+      headerName: "Incident Owner",
       flex: 1,
-      sortable: false,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${usercnxt.firstName || ""} ${usercnxt.lastName || ""}`,
+      renderCell: (params: GridRenderCellParams<Incident>) => (
+        <strong>
+          <Button
+            variant="text"
+            size="small"
+            style={{ marginLeft: 16 }}
+            tabIndex={params.hasFocus ? 0 : -1}
+            onClick={() => {
+              fetchProfileUserDetails(params.row.requestedFor);
+              handleOpenProfileModal();
+            }}
+          >
+            {params.value}
+          </Button>
+        </strong>
+      ),
     },
   ];
 
@@ -100,7 +112,30 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     boxShadow: 24,
     p: 4,
   };
+  const profileBoxStyle = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 370,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
+  const [openProfileModal, setOpenProfileModal] = useState<boolean>(false);
+  const handleOpenProfileModal = () => setOpenProfileModal(true);
+  const handleCloseProfileModal = () => setOpenProfileModal(false);
+  const [profileUser, setProfileUser] = useState<User>(usercnxt);
+  const fetchProfileUserDetails = (profileUserName: string) => {
+    axios
+      .post("http://localhost:8080/users/user", { userName: profileUserName })
+      .then((response) => {
+        console.log(response.data.user);
+        setProfileUser(response.data.user);
+      });
+  };
   return (
     <>
       {usercnxt && (
@@ -192,6 +227,18 @@ const Home = ({ userCnxtHandler }: UserProps) => {
             alertMsgHandler={alertMsgHandler}
             handleOpenAlert={handleOpenAlert}
           />
+        </Box>
+      </Modal>
+      <Modal
+        open={openProfileModal}
+        onClose={handleCloseProfileModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={profileBoxStyle}>
+          {profileUser && profileUser.userName && (
+            <Profile user={profileUser} />
+          )}
         </Box>
       </Modal>
     </>

@@ -6,11 +6,13 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import BadgeIcon from "@mui/icons-material/Badge";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import User from "../CommonInterfaces/User";
 
-const Profile = () => {
-  const userCnxt = useContext(UserContext);
-  const imageUrl: string =
-    "/static/images/cards/" + userCnxt.firstName + ".jpg";
+interface ProfileProps {
+  user: User;
+}
+const Profile = ({ user }: ProfileProps) => {
+  const imageUrl: string = "/static/images/cards/" + user.firstName + ".jpg";
   return (
     <>
       <Card sx={{ maxWidth: 350 }}>
@@ -22,27 +24,27 @@ const Profile = () => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {userCnxt.firstName} {userCnxt.lastName}
+            {user.firstName} {user.lastName}
           </Typography>
           <Typography variant="subtitle1">
             <BadgeIcon fontSize="small" />
-            {userCnxt.title}
+            {user.title}
           </Typography>
           <Typography variant="subtitle2">
             <AttachMoneyIcon fontSize="small" />
-            {userCnxt.costCenter}
+            {user.costCenter}
           </Typography>
           <Typography variant="body2">
             <LocationOnIcon fontSize="small" />
-            {userCnxt.location}
+            {user.location}
           </Typography>
           <Typography variant="body2">
             <PhoneIcon fontSize="small" />
-            {userCnxt.contactNumber}
+            {user.contactNumber}
           </Typography>
           <Typography variant="body2">
             <EmailIcon fontSize="small" />
-            {userCnxt.contactEmail}
+            {user.contactEmail}
           </Typography>
         </CardContent>
       </Card>
