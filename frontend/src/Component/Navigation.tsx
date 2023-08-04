@@ -128,7 +128,7 @@ export default function Navigation({ authHandler }: AuthenticationProps) {
           >
             {sessionStorage.getItem("userToken") && user && user.userName && (
               <p>
-                Welcome! {user.firstName} {user.lastName}
+                Welcome {user.firstName} {user.lastName} !
               </p>
             )}
           </Typography>

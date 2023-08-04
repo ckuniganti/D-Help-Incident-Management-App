@@ -167,13 +167,12 @@ const Home = ({ userCnxtHandler }: UserProps) => {
               alignItems: "center", // Optional: Vertically align the button with the text
             }}
           >
-            <Typography variant="h6">
-              Displaying Incidents created for {usercnxt.firstName}{" "}
-              {usercnxt.lastName}
+            <Typography sx={{ margin: 1, marginLeft: 10 }} variant="h5">
+              Incidents
               <Button
                 variant="contained"
                 size="medium"
-                sx={{ margin: 1, marginLeft: 80 }}
+                sx={{ margin: 1, marginLeft: 130 }}
                 onClick={() => {
                   setOpenNewIncidentModal(true);
                 }}
