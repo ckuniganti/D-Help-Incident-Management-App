@@ -32,38 +32,95 @@ const Home = ({ userCnxtHandler }: UserProps) => {
   const incidentsHandler = (incidents: Incident[]) => {
     setIncidents(incidents);
   };
+
+  const getIncidentIdDisplay = (params: GridRenderCellParams<Incident>) => (
+    <strong>
+      <Button
+        variant="text"
+        size="small"
+        style={{ marginLeft: 16 }}
+        tabIndex={params.hasFocus ? 0 : -1}
+        onClick={() => {
+          setOpenModal(true);
+          setIncident(params.row);
+        }}
+      >
+        {params.value}
+      </Button>
+    </strong>
+  );
+  const normalIncidentIdDisplayField = (
+    params: GridRenderCellParams<Incident>
+  ) => <strong>{params.value}</strong>;
+
   const incidentColumns: GridColDef[] = [
     {
       field: "incidentID",
       headerName: "IncidentID",
-      renderCell: (params: GridRenderCellParams<Incident>) => (
-        <strong>
-          <Button
-            variant="text"
-            size="small"
-            style={{ marginLeft: 16 }}
-            tabIndex={params.hasFocus ? 0 : -1}
-            onClick={() => {
-              setOpenModal(true);
-              setIncident(params.row);
-            }}
-          >
-            {params.value}
-          </Button>
-        </strong>
-      ),
+      renderCell:
+        localStorage.getItem("role") === "admin"
+          ? getIncidentIdDisplay
+          : normalIncidentIdDisplayField,
       flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
     },
-    { field: "effectiveDate", headerName: "EffectiveDate", flex: 1 },
-    { field: "environmentType", headerName: "EnvironmentType", flex: 1 },
-    { field: "environment", headerName: "Environment", flex: 1 },
-    { field: "application", headerName: "Application", flex: 1 },
-    { field: "createdTime", headerName: "CreatedTime", flex: 1 },
-    { field: "status", headerName: "Status", flex: 1 },
+    {
+      field: "effectiveDate",
+      headerName: "EffectiveDate",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "environmentType",
+      headerName: "EnvironmentType",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "environment",
+      headerName: "Environment",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "application",
+      headerName: "Application",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "createdTime",
+      headerName: "CreatedTime",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+    },
     {
       field: "requestedFor",
       headerName: "Incident Owner",
       flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
       renderCell: (params: GridRenderCellParams<Incident>) => (
         <strong>
           <Button
@@ -136,6 +193,7 @@ const Home = ({ userCnxtHandler }: UserProps) => {
         setProfileUser(response.data.user);
       });
   };
+
   return (
     <>
       {usercnxt && (
@@ -182,15 +240,24 @@ const Home = ({ userCnxtHandler }: UserProps) => {
             </Typography>
           </Box>
 
-          <DataGrid
-            getRowId={(row) => row.incidentID}
-            rows={usercnxt.incidents}
-            columns={incidentColumns}
-            initialState={{
-              pagination: { paginationModel: { pageSize: 5 } },
+          <Box
+            sx={{
+              "& .super-app-theme--header": {
+                backgroundColor: "rgba(25, 118, 210, 0.7)",
+                color: "rgba(255, 255, 255, 1)",
+              },
             }}
-            pageSizeOptions={[5, 10, 25, 50, 100]}
-          />
+          >
+            <DataGrid
+              getRowId={(row) => row.incidentID}
+              rows={usercnxt.incidents}
+              columns={incidentColumns}
+              initialState={{
+                pagination: { paginationModel: { pageSize: 5 } },
+              }}
+              pageSizeOptions={[5, 10, 25, 50, 100]}
+            />
+          </Box>
         </div>
       )}
       <Modal

@@ -116,7 +116,11 @@ export default function Navigation({ authHandler }: AuthenticationProps) {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              marginLeft: 1,
+            }}
           >
             <p> Deloitte Incident Management Portal</p>
           </Typography>
