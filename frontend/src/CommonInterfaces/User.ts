@@ -10,6 +10,7 @@ interface User {
   location: string;
   contactNumber: string;
   contactEmail: string;
+  role: string;
   incidents: Incident[];
 }
 

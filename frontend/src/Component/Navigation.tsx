@@ -91,6 +91,7 @@ export default function Navigation({ authHandler }: AuthenticationProps) {
     sessionStorage.removeItem("userToken");
     authHandler(false);
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     navigate("/");
   };
 
@@ -127,7 +128,7 @@ export default function Navigation({ authHandler }: AuthenticationProps) {
           >
             {sessionStorage.getItem("userToken") && user && user.userName && (
               <p>
-                Welcome! {user.firstName} {user.lastName}
+                Welcome {user.firstName} {user.lastName} !
               </p>
             )}
           </Typography>
@@ -189,7 +190,7 @@ export default function Navigation({ authHandler }: AuthenticationProps) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>{user && user.userName && <Profile />}</Box>
+        <Box sx={style}>{user && user.userName && <Profile user={user} />}</Box>
       </Modal>
     </Box>
   );

@@ -41,6 +41,7 @@ const Login = ({ userCnxtHandler, authHandler }: UserProps) => {
           userCnxtHandler(response.data.user);
           localStorage.setItem("user", JSON.stringify(response.data.user));
           sessionStorage.setItem("userToken", "SecretPassword");
+          localStorage.setItem("role", response.data.user.role);
           authHandler(true);
           navigate("/home");
         }

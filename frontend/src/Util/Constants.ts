@@ -26,6 +26,7 @@ const defaultUser: User = {
   location: "",
   contactNumber: "",
   contactEmail: "",
+  role: "",
   incidents: [],
 };
 
