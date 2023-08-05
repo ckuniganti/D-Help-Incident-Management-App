@@ -11,7 +11,7 @@ import {
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import IncidentDetails from "./IncidentDetails";
 import Incident from "../CommonInterfaces/Incident";
 import NewIncident from "./NewIncident";
@@ -20,6 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
 import Profile from "./Profile";
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 
 interface UserProps {
   userCnxtHandler: (user: User) => void;
@@ -198,8 +199,33 @@ const Home = ({ userCnxtHandler }: UserProps) => {
     <>
       {usercnxt && (
         <div>
+          <Box>
+            <Grid container alignItems="center">
+              <Grid item xs={6}>
+                <Typography sx={{ margin: 1, marginLeft: 10 }} variant="h5">
+                  Incidents
+                </Typography>
+              </Grid>
+              <Grid item xs={6} textAlign="right">
+                <Button
+                  variant="contained"
+                  size="medium"
+                  onClick={() => {
+                    setOpenNewIncidentModal(true);
+                  }}
+                >
+                  New Incident
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
           <Box sx={{ width: "100%", alignItems: "center" }}>
-            <Collapse in={openAlert}>
+            <Snackbar
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              open={openAlert}
+              autoHideDuration={6000}
+              onClose={handleCloseAlert}
+            >
               <Alert
                 variant="filled"
                 action={
@@ -216,30 +242,8 @@ const Home = ({ userCnxtHandler }: UserProps) => {
               >
                 {alertMsg}
               </Alert>
-            </Collapse>
+            </Snackbar>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center", // Optional: Vertically align the button with the text
-            }}
-          >
-            <Typography sx={{ margin: 1, marginLeft: 10 }} variant="h5">
-              Incidents
-              <Button
-                variant="contained"
-                size="medium"
-                sx={{ margin: 1, marginLeft: 130 }}
-                onClick={() => {
-                  setOpenNewIncidentModal(true);
-                }}
-              >
-                New Incident
-              </Button>
-            </Typography>
-          </Box>
-
           <Box
             sx={{
               "& .super-app-theme--header": {
