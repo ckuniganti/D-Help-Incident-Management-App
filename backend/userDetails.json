@@ -1,1 +1,103 @@
-{"users":[{"userName":"admin@deloitte.com","password":"12345","firstName":"Super","lastName":"Admin","title":"Manager","costCenter":"CORE INDUSTRY SOLUTIONS USI HYD OFF","location":"India - Hyderabad","contactNumber":"+1.615.718.9983","contactEmail":"admin@deloitte.com","role":"admin","incidents":[]},{"userName":"ckuniganti@deloitte.com","password":"12345","firstName":"Chandra","lastName":"Kuniganti","title":"Senior Consultant","costCenter":"CORE INDUSTRY SOLUTIONS USI HYD OFF","location":"India - Hyderabad","contactNumber":"+1.615.718.9983","contactEmail":"ckuniganti@deloitte.com","role":"user","incidents":[{"incidentID":"INC0001","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-12","environmentType":"Prod","application":"BC-Guidewire","description":"Prod PC Read Access","createdTime":"2023-08-05","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-05","status":"Closed","environment":"Prod"},{"incidentID":"INC0022","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-06","environmentType":"Non-Prod","application":"PC-Guidewire","description":"dasdasdwawea","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Testing"},{"incidentID":"INC0023","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-05","environmentType":"Non-Prod","application":"AWS","description":"AWS read Access","createdTime":"2023-08-04","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Prod"},{"incidentID":"INC0024","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-11","environmentType":"Non-Prod","application":"DataLake","description":"asfasf","createdTime":"2023-08-18","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-25","status":"Open","environment":"Testing"},{"incidentID":"INC0026","requestedBy":"ckuniganti@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-11","environmentType":"Non-Prod","application":"BC-Portal","description":"access","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"UAT"},{"incidentID":"INC0028","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-05","environmentType":"Prod","application":"SQL","description":"12345","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Prod"},{"incidentID":"INC0029","requestedBy":"ckuniganti@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-05","environmentType":"Non-Prod","application":"PC-Portal","description":"aedad","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Dev"},{"incidentID":"INC0030","requestedBy":"ckuniganti@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-05","environmentType":"Prod","application":"CC-Guidewire","description":"CC guidewire access","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Dev"},{"incidentID":"INC0032","requestedBy":"ckuniganti@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-07","environmentType":"Prod","application":"SQL","description":"SQL Read/Write Access","createdTime":"2023-08-04","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Prod"},{"incidentID":"INC0034","requestedBy":"admin@deloitte.com","requestedFor":"ckuniganti@deloitte.com","effectiveDate":"2023-08-15","environmentType":"Non-Prod","application":"BC-Portal","description":"Description","createdTime":"2023-08-04","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"UAT"}]},{"userName":"mdenre@deloitte.com","password":"12345","firstName":"Mrinal","lastName":"Denre","title":"Consultant","costCenter":"CLOUD ENGINEERING USI BEN OFF","location":"India - Bengaluru","contactNumber":"+919113908545","contactEmail":"mdenre@deloitte.com","role":"user","incidents":[{"incidentID":"INC0002","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-10","environmentType":"Prod","application":"CC-Portal","description":"Portal Read-only access","createdTime":"2023-08-10","updatedBy":"ckuniganti@deloitte.com","updatedTime":"2023-08-10","status":"Open","environment":"Dev"},{"incidentID":"INC0025","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-07","environmentType":"Prod","application":"PC-Guidewire","description":"qwqweqw","createdTime":"2023-08-05","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-05","status":"Open","environment":"Dev"},{"incidentID":"INC0027","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-05","environmentType":"Non-Prod","application":"CC-Guidewire","description":"CC GW access","createdTime":"2023-08-04","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Testing"},{"incidentID":"INC0031","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-11","environmentType":"Non-Prod","application":"AWS","description":"aws access","createdTime":"2023-08-04","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Testing"},{"incidentID":"INC0033","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-07","environmentType":"Non-Prod","application":"BC-Guidewire","description":"BC access","createdTime":"2023-08-04","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-04","status":"Open","environment":"Testing"},{"incidentID":"INC0035","requestedBy":"admin@deloitte.com","requestedFor":"mdenre@deloitte.com","effectiveDate":"2023-08-07","environmentType":"Prod","application":"BC-Guidewire","description":"qweqweqwe","createdTime":"2023-08-05","updatedBy":"admin@deloitte.com","updatedTime":"2023-08-05","status":"Open","environment":"Dev"}]},{"userName":"inprashanth@deloitte.com","password":"12345","firstName":"Prashanth","lastName":"Indraganti","title":"Senior Consultant","costCenter":"CORE INDUSTRY SOLUTIONS USI HYD OFF","location":"India - Hyderabad","contactNumber":"+1.629.303.6546","contactEmail":"inprashanth@deloitte.com","role":"user","incidents":[]}]}
+{
+  "users": [
+    {
+      "userName": "admin@deloitte.com",
+      "password": "12345",
+      "firstName": "Admin",
+      "lastName": "User",
+      "title": "Manager",
+      "costCenter": "CORE INDUSTRY SOLUTIONS USI HYD OFF",
+      "location": "India - Hyderabad",
+      "contactNumber": "+1.615.718.9983",
+      "contactEmail": "admin@deloitte.com",
+      "role": "admin",
+      "incidents": []
+    },
+    {
+      "userName": "ckuniganti@deloitte.com",
+      "password": "12345",
+      "firstName": "Chandra",
+      "lastName": "Kuniganti",
+      "title": "Senior Consultant",
+      "costCenter": "CORE INDUSTRY SOLUTIONS USI HYD OFF",
+      "location": "India - Hyderabad",
+      "contactNumber": "+1.615.718.9983",
+      "contactEmail": "ckuniganti@deloitte.com",
+      "role": "user",
+      "incidents": [
+        {
+          "incidentID": "INC0037",
+          "requestedBy": "admin@deloitte.com",
+          "requestedFor": "ckuniganti@deloitte.com",
+          "effectiveDate": "2023-08-31",
+          "environmentType": "Prod",
+          "application": "PC-Guidewire",
+          "description": "Read Access for Production",
+          "createdTime": "2023-08-07",
+          "updatedBy": "ckuniganti@deloitte.com",
+          "updatedTime": "2023-08-07",
+          "status": "In-Progress",
+          "environment": "Prod",
+          "notes": [
+            {
+              "authorName": "Chandra",
+              "noteAddedDate": "2023-08-07",
+              "note": "we lost all the notes afte the update it looks like a bug"
+            },
+            {
+              "authorName": "Super",
+              "noteAddedDate": "2023-08-07",
+              "note": "May be, Let me check on that with the respective teams. Also updating the status to in-progress"
+            },
+            {
+              "authorName": "Chandra",
+              "noteAddedDate": "2023-08-07",
+              "note": "progress is still open , can you please check if it was handled or not?\n"
+            },
+            {
+              "authorName": "Admin",
+              "noteAddedDate": "2023-08-07",
+              "note": "Let me update the status properly"
+            },
+            {
+              "authorName": "Admin",
+              "noteAddedDate": "2023-08-07",
+              "note": "updated, please check now"
+            },
+            {
+              "authorName": "Chandra",
+              "noteAddedDate": "2023-08-07",
+              "note": "Yes, Its reflected properly now"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userName": "mdenre@deloitte.com",
+      "password": "12345",
+      "firstName": "Mrinal",
+      "lastName": "Denre",
+      "title": "Consultant",
+      "costCenter": "CLOUD ENGINEERING USI BEN OFF",
+      "location": "India - Bengaluru",
+      "contactNumber": "+919113908545",
+      "contactEmail": "mdenre@deloitte.com",
+      "role": "user",
+      "incidents": []
+    },
+    {
+      "userName": "inprashanth@deloitte.com",
+      "password": "12345",
+      "firstName": "Prashanth",
+      "lastName": "Indraganti",
+      "title": "Senior Consultant",
+      "costCenter": "CORE INDUSTRY SOLUTIONS USI HYD OFF",
+      "location": "India - Hyderabad",
+      "contactNumber": "+1.629.303.6546",
+      "contactEmail": "inprashanth@deloitte.com",
+      "role": "user",
+      "incidents": []
+    }
+  ]
+}

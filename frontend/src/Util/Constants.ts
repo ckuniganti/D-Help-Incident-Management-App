@@ -14,6 +14,7 @@ const defaultIncident: Incident = {
   updatedTime: getDateOnlyInString(new Date()),
   status: "",
   environment: "",
+  notes: [],
 };
 
 const defaultUser: User = {

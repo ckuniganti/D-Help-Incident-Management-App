@@ -59,7 +59,11 @@ const IncidentComponent = ({
   const { errors } = formState;
   const onSaveHandler = (data: Incident) => {
     if (mode === "edit") {
-      data = { ...data, incidentID: incident.incidentID };
+      data = {
+        ...data,
+        incidentID: incident.incidentID,
+        notes: incident.notes,
+      };
     }
     const request: SaveIncidentRequest = {
       userName: data.requestedFor,
