@@ -21,6 +21,7 @@ import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
 import Profile from "./Profile";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import NoteForm from "./NoteForm";
 
 interface UserProps {
   userCnxtHandler: (user: User) => void;
@@ -98,6 +99,33 @@ const Home = ({ userCnxtHandler }: UserProps) => {
       headerClassName: "super-app-theme--header",
       headerAlign: "center",
       align: "center",
+    },
+    {
+      field: "notes",
+      valueGetter: (params) => {
+        return "notes";
+      },
+      headerName: "Notes",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      align: "center",
+      renderCell: (params: GridRenderCellParams<Incident>) => (
+        <strong>
+          <Button
+            variant="text"
+            size="small"
+            style={{ marginLeft: 16 }}
+            tabIndex={params.hasFocus ? 0 : -1}
+            onClick={() => {
+              handleOpenNotesModal();
+              setIncident(params.row);
+            }}
+          >
+            {params.value}
+          </Button>
+        </strong>
+      ),
     },
     {
       field: "createdTime",
@@ -194,6 +222,10 @@ const Home = ({ userCnxtHandler }: UserProps) => {
         setProfileUser(response.data.user);
       });
   };
+
+  const [openNotesModal, setOpenNotesModal] = useState<boolean>(false);
+  const handleOpenNotesModal = () => setOpenNotesModal(true);
+  const handleCloseNotesModal = () => setOpenNotesModal(false);
 
   return (
     <>
@@ -308,6 +340,25 @@ const Home = ({ userCnxtHandler }: UserProps) => {
         <Box sx={profileBoxStyle}>
           {profileUser && profileUser.userName && (
             <Profile user={profileUser} />
+          )}
+        </Box>
+      </Modal>
+      <Modal
+        open={openNotesModal}
+        onClose={handleCloseNotesModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={profileBoxStyle}>
+          {incident && (
+            <NoteForm
+              incident={incident}
+              incidentsHandler={incidentsHandler}
+              userCnxtHandler={userCnxtHandler}
+              handleCloseNotesModal={handleCloseNotesModal}
+              alertMsgHandler={alertMsgHandler}
+              handleOpenAlert={handleOpenAlert}
+            />
           )}
         </Box>
       </Modal>

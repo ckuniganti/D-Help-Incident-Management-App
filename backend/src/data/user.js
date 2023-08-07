@@ -115,6 +115,7 @@ async function updateIncident(userName, data) {
     if (userIndex < 0) {
       throw new NotFoundError("Could not find user for userName " + userName);
     }
+    console.log("final User data that is getting updated : ", userData);
     allUsersData.users[userIndex] = userData;
     await fs.writeFile("userDetails.json", JSON.stringify(allUsersData));
   }
